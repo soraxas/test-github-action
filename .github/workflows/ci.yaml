@@ -27,8 +27,9 @@ jobs:
       - name: install x13as
         run: conda install -c soraxas x13as -y
 
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
 
       - name: install he
         run: pip install statsmodels==0.12.0
