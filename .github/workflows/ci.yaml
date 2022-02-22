@@ -26,6 +26,8 @@ jobs:
         run: conda install statsmodels -y
       - name: install x13as
         run: conda install -c soraxas x13as -y
+      - name: install he
+        run: pip install statsmodels==0.12.0
       - name: test
         run: python -c "from statsmodels.tsa import x13; import numpy as np; import pandas as pd; print(x13.x13_arima_analysis(pd.DataFrame(data=np.random.rand(48),index=pd.date_range( start='2020-01-01', periods=48, freq='M' ))))"
 
