@@ -22,10 +22,10 @@ jobs:
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
-      - name: Conda info
-        run: conda install statsmodels
+      - name: Conda install statsmodel
+        run: conda install statsmodels -y
       - name: install x13as
-        run: conda install -c soraxas x13as
+        run: conda install -c soraxas x13as -y
       - name: test
         run: python -c "from statsmodels.tsa import x13; import numpy as np; import pandas as pd; print(x13.x13_arima_analysis(pd.DataFrame(data=np.random.rand(48),index=pd.date_range( start='2020-01-01', periods=48, freq='M' ))))"
 
