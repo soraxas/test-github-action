@@ -8,20 +8,27 @@ jobs:
       fail-fast: false
       matrix:
         os: [
-          # "ubuntu-latest",
-          # "macos-latest",
-          # "windows-latest"
-          "macos-latest"
+          "ubuntu-latest",
+          "macos-latest",
+          "windows-latest"
+          # "macos-latest"
         ]
         python-version: [
           "3.7", 
-          # "2.7"
+          "2.7"
         ]
     steps:
       - uses: conda-incubator/setup-miniconda@v2
         with:
           auto-update-conda: true
           python-version: ${{ matrix.python-version }}
+      - name: Conda info
+        run: conda install statsmodels
+      - name: install x13as
+        run: conda install -c soraxas x13as
+      - name: test
+        run: python -c "from statsmodels.tsa import x13; import numpy as np; import pandas as pd; print(x13.x13_arima_analysis(pd.DataFrame(data=np.random.rand(48),index=pd.date_range( start='2020-01-01', periods=48, freq='M' ))))"
+
       - name: Conda info
         shell: bash -l {0}
         run: conda info
